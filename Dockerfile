@@ -25,7 +25,8 @@ RUN tar zxvf mecab-ko-dic-2.1.1-20180720.tar.gz \
 FROM ubuntu:18.04
 
 COPY --from=builder /usr/local/etc/mecabrc /usr/local/etc/mecabrc
-COPY --from=builder /usr/local/lib /usr/local/lib
-COPY --from=builder /usr/local/bin /usr/local/bin
-COPY --from=builder /tmp/resources/mecab-ko-dic-2.1.1-20180720 /etc/mecab-ko-dic
+COPY --from=builder /usr/local/lib/* /usr/local/lib/
+COPY --from=builder /usr/local/bin/* /usr/local/bin/
+COPY --from=builder /usr/local/libexec/mecab /usr/local/libexec/mecab
+COPY --from=builder /tmp/resources/mecab-ko-dic-2.1.1-20180720 /opt/mecab-ko-dic
 RUN ldconfig
